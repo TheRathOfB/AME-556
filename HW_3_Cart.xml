@@ -1,0 +1,43 @@
+<mujoco>
+  <option timestep="0.001" o_solref="-100000 -1000" gravity="0 0 -9.81">
+    <flag override="enable"/>
+  </option>
+  <worldbody>
+    <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+    <geom type="plane" size="1 1 0.1" rgba="1 1 1 1"/>
+    <body pos=".1 0 .15" euler="0 90 0">
+      <joint type="free"/>
+      <geom type="box" size=".05 .1 .15" rgba="1 0 0 1"/>
+      <body pos=".1 .08 -.08" euler="90 0 0">
+        <joint type="hinge" name="back-left-wheel" axis="0 0 -1"/>
+        <geom type="cylinder" size=".05 .02" rgba="0 .9 0 1"/>
+      </body>
+      <body pos=".1 -.08 -.08" euler="90 0 0">
+        <joint type="hinge" name="back-right-wheel" axis="0 0 -1"/>
+        <geom type="cylinder" size=".05 .02" rgba="0 .9 0 1"/>
+      </body>
+      <body pos=".1 .08 .08" euler="90 0 0">
+        <joint type="hinge" name="front-left-wheel" axis="0 0 -1"/>
+        <geom type="cylinder" size=".05 .02" rgba="0 .9 0 1"/>
+      </body>
+      <body pos=".1 -.08 .08" euler="90 0 0">
+        <joint type="hinge" name="front-right-wheel" axis="0 0 -1"/>
+        <geom type="cylinder" size=".05 .02" rgba="0 .9 0 1"/>
+      </body>
+      <body pos="-.35 0 0" euler="0 90 0">
+        <joint type="hinge" name="pole" axis="0 1 0" pos="0 0 .3"/>
+        <geom type="capsule" size=".02 .3" rgba="0 .9 0 1"/>
+        <body pos="0 0 -.32">
+          <joint type="ball" name="pole-mass"/>
+          <geom type="sphere" size=".1" rgba=".9 0 0 1"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor joint="back-left-wheel" ctrlrange="-100 100" gear="1"/>
+    <motor joint="back-right-wheel" ctrlrange="-100 100" gear="1"/>
+    <motor joint="front-left-wheel" ctrlrange="-100 100" gear="1"/>
+    <motor joint="front-right-wheel" ctrlrange="-100 100" gear="1"/>
+  </actuator>
+</mujoco>
